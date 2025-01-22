@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mission_3
 {
+    // Class to create the object for the category, fooditem, quantity, and expirationdate
     internal class FoodItem
     {
         public string Name { get; set; }

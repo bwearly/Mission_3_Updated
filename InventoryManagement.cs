@@ -9,7 +9,10 @@ namespace Mission_3
 {
     internal class InventoryManagement
     {
+        // Creates a public list to hold the food item information
         private List<FoodItem> foodItems = new List<FoodItem>();
+
+        // Reads the user input and calls the specific class based on the input
         public bool processInput(string input)
         {
             switch (input)
@@ -33,11 +36,13 @@ namespace Mission_3
             return false;
         }
 
+        // Class to add the food item
         public void addFoodItem()
         {
             Console.WriteLine("\nWhat food would you like to add to the inventory? ");
             string newFoodItem = Console.ReadLine()?.Trim().ToUpper();
 
+            // Null check
             if (string.IsNullOrEmpty(newFoodItem))
             {
                 Console.WriteLine("\nFood item cannot be empty.");
@@ -46,6 +51,7 @@ namespace Mission_3
 
             string category = chooseCategory(newFoodItem);
 
+            // Null and quantity check
             Console.WriteLine($"How many {newFoodItem}s do you have?");
             if (!int.TryParse(Console.ReadLine(), out int quantity) || quantity < 0)
             {
@@ -53,6 +59,7 @@ namespace Mission_3
                 return;
             }
 
+            // Expiration date null and value check
             Console.WriteLine($"When does {newFoodItem} expire? (ex. MM-DD-YYYY)");
             if (!DateTime.TryParse(Console.ReadLine(), out DateTime expirationDate))
             {
@@ -64,13 +71,14 @@ namespace Mission_3
             Console.WriteLine($"\nYour addition of {newFoodItem} in category {category} was successful.");
         }
 
-
+        // Category options class for the different food types
         public string chooseCategory(string newFoodItem)
         {
             Console.WriteLine($"\nWhat food category does '{newFoodItem}' belong to?");
             Console.WriteLine("Options: Dairy, Meat, Produce, Canned Goods");
             string categoryInput = Console.ReadLine()?.Trim().ToLower();
 
+            // Displays the options and adds the category to the FoodItem
             switch (categoryInput)
             {
                 case "dairy":
@@ -87,13 +95,16 @@ namespace Mission_3
             }
         }
 
+        // Method to delete the food
         public void deleteFoodItem()
         {
             Console.WriteLine("\nWhat food item would you like to delete?");
             string deleteFoodItem = Console.ReadLine()?.Trim();
 
+            // Makes sure that the food is in the class to delete
             FoodItem itemToRemove = foodItems.Find(item => item.Name.Equals(deleteFoodItem, StringComparison.OrdinalIgnoreCase));
 
+            // Null check
             if (itemToRemove != null)
             {
                 foodItems.Remove(itemToRemove);
@@ -105,14 +116,17 @@ namespace Mission_3
             }
         }
 
+        // Prints the food in the list
         public void printAllFood()
         {
+            // Checks the count list
             if (foodItems.Count == 0)
             {
                 Console.WriteLine("\nThe inventory is currently empty.");
                 return;
             }
 
+            // Iterates through the list to print each foodItem with information
             Console.WriteLine("\nCurrent Food Inventory:");
             foreach (var item in foodItems)
             {
