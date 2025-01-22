@@ -1,10 +1,27 @@
 ﻿using System.Reflection.Metadata;
+using Microsoft.VisualBasic;
 using Mission_3;
 
 // Imports the classes
 InventoryManagement im = new InventoryManagement();
 
-Console.WriteLine("Good Afternoon! ");
+// A nice welcoming message for the TAs
+string timing = "";
+if (DateTime.Now.Hour < 12)
+{
+    timing = "Morning TA!";
+}
+else if (DateTime.Now.Hour < 18)
+{
+    timing = "Afternoon TA!";
+}
+else
+{
+    timing = "Evening TA!";
+
+}
+
+Console.WriteLine($"Good {timing}");
 
 // Allows the program to run until they type exit
 while (true)

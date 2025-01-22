@@ -98,7 +98,21 @@ namespace Mission_3
         // Method to delete the food
         public void deleteFoodItem()
         {
-            Console.WriteLine("\nWhat food item would you like to delete?");
+            // Prints out the list of food items that you could delete
+            if (foodItems.Count == 0)
+            {
+                Console.WriteLine("\nThe inventory is currently empty. Therefore there are no items to delete.");
+                return;
+            }
+
+            // Iterates through the list to print each foodItem with information
+            Console.WriteLine("\nCurrent Food Inventory:");
+            foreach (var item in foodItems)
+            {
+                Console.WriteLine($"- {item}");
+            }
+
+            Console.WriteLine("\nWhat food item would you like to delete? (ex. chicken)");
             string deleteFoodItem = Console.ReadLine()?.Trim();
 
             // Makes sure that the food is in the class to delete
